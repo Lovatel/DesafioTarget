@@ -1,11 +1,11 @@
 {
-    "movimenta��es": [
+    "movimentações": [
         {
-            "id_da_movimenta��o": 1,
-            "product_id": "3456",
-            "nome_do_produto": "Batatas",
-            "quantidade_do_produto": 50,
-            "tipo_da_movimenta��o": "adi��o"
+            "id_da_movimentação": 1,
+            "id_do_produto": "875",
+            "nome_do_produto": "polenta",
+            "quantidade_do_produto": 45,
+            "tipo_da_movimentação": "adição"
         }
     ]
 }

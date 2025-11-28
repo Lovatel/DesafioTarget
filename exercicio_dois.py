@@ -18,6 +18,9 @@ def safe_int_convert(value):
     except:
         return safe_int_convert(input("Valor inválido, digite novamente: "))
     
+def calculate_max_id(transactions):
+    return max((t.get("id_da_movimentação", 0) for t in transactions), default=0)
+    
 def run_system():
     
     while True:
@@ -49,28 +52,29 @@ def run_system():
             try:
                 with open("movimentações.json", "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    
-                    transactions: list = data["movimentações"]
-                    
+
+                    transactions: list = data.get("movimentações", [])
+
+                    max_id = calculate_max_id(transactions)
                     new_entry = {
-                    "id_da_movimentação" : transactions.sort() + 1,
-                    "product_id": product_id,
-                    "nome_do_produto" : product_name,
-                    "quantidade_do_produto" : product_quantity,
-                    "tipo_da_movimentação" : "adição"
+                        "id_da_movimentação": max_id + 1,
+                        "id_do_produto": product_id,
+                        "nome_do_produto": product_name,
+                        "quantidade_do_produto": product_quantity,
+                        "tipo_da_movimentação": "adição"
                     }
-                    
+
                     transactions.append(new_entry)
                     data["movimentações"] = transactions
 
                     with open("movimentações.json", "w", encoding="utf-8") as w:
-                        json.dump(data, w, ensure_ascii=False, indent= 4)
-                    
+                        json.dump(data, w, ensure_ascii=False, indent=4)
+
                     print(data)
             except FileNotFoundError:
                 data = [{
                     "id_da_movimentação" : 1,
-                    "product_id": product_id,
+                    "id_do_produto": product_id,
                     "nome_do_produto" : product_name,
                     "quantidade_do_produto" : product_quantity,
                     "tipo_da_movimentação" : "adição"
@@ -82,7 +86,7 @@ def run_system():
 
                 print(transactions)
 
-                with open("movimentações.json", "w") as w:
+                with open("movimentações.json", "w", encoding="utf-8") as w:
                     json.dump(transactions, w, ensure_ascii=False, indent= 4)
 
             is_existing_product = False
@@ -122,28 +126,29 @@ def run_system():
             try:
                 with open("movimentações.json", "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    
-                    transactions: list = data["movimentações"]
-                    
+
+                    transactions: list = data.get("movimentações", [])
+
+                    max_id = calculate_max_id(transactions)
                     new_entry = {
-                    "id_da_movimentação" : transactions.sort() + 1,
-                    "product_id": product_id,
-                    "nome_do_produto" : product_name,
-                    "quantidade_do_produto" : product_quantity,
-                    "tipo_da_movimentação" : "remoção"
+                        "id_da_movimentação": max_id + 1,
+                        "id_do_produto": product_id,
+                        "nome_do_produto": product_name,
+                        "quantidade_do_produto": product_quantity,
+                        "tipo_da_movimentação": "remoção"
                     }
-                    
+
                     transactions.append(new_entry)
                     data["movimentações"] = transactions
-                    
+
                     with open("movimentações.json", "w", encoding="utf-8") as w:
-                        json.dump(data, w, ensure_ascii=False, indent= 4)
-                    
+                        json.dump(data, w, ensure_ascii=False, indent=4)
+
                     print(data)
             except FileNotFoundError:
                 data = [{
                     "id_da_movimentação" : 1,
-                    "product_id": product_id,
+                    "id_do_produto": product_id,
                     "nome_do_produto" : product_name,
                     "quantidade_do_produto" : product_quantity,
                     "tipo_da_movimentação" : "remoção"
@@ -155,7 +160,7 @@ def run_system():
 
                 print(transactions)
 
-                with open("movimentações.json", "w") as w:
+                with open("movimentações.json", "w", encoding="utf-8") as w:
                     json.dump(transactions, w, ensure_ascii=False, indent= 4)
 
             is_existing_product = False
