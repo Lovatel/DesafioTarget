@@ -1,0 +1,11 @@
+{
+    "movimenta��es": [
+        {
+            "id_da_movimenta��o": 1,
+            "product_id": "3456",
+            "nome_do_produto": "Batatas",
+            "quantidade_do_produto": 50,
+            "tipo_da_movimenta��o": "adi��o"
+        }
+    ]
+}

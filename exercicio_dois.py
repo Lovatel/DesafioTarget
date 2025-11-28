@@ -29,23 +29,25 @@ def run_system():
             option = None
 
         if option == 1:
-            with open("estoque.json", "r", encoding="utf8") as f:
+            with open("estoque.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
                 print(data)
+
         elif option == 2:
             try:
-                with open("movimentacoes.json", "r", encoding="utf8") as f:
+                with open("movimentações.json", "r", encoding="utf-8") as f:
                     data = json.load(f)
                     print(data)
             except FileNotFoundError:
                 print("Não existem movimentações cadastradas ainda.")
+
         elif option == 3:
             product_id = input("Digite o Id da mercadoria:")
             product_name = input("Digite o nome da mercadoria: ")
             product_quantity = safe_int_convert(input("Digite a quantidade que deseja adicionar: "))
 
             try:
-                with open("movimentacoes.json", "r+", encoding="utf8") as f:
+                with open("movimentações.json", "r", encoding="utf-8") as f:
                     data = json.load(f)
                     
                     transactions: list = data["movimentações"]
@@ -60,8 +62,9 @@ def run_system():
                     
                     transactions.append(new_entry)
                     data["movimentações"] = transactions
-                    
-                    json.dump(data, f, indent= 4)
+
+                    with open("movimentações.json", "w", encoding="utf-8") as w:
+                        json.dump(data, w, ensure_ascii=False, indent= 4)
                     
                     print(data)
             except FileNotFoundError:
@@ -79,12 +82,12 @@ def run_system():
 
                 print(transactions)
 
-                with open("movimentações.json", "w") as json_file:
-                    json.dump(transactions, json_file, indent= 4)
+                with open("movimentações.json", "w") as w:
+                    json.dump(transactions, w, ensure_ascii=False, indent= 4)
 
             is_existing_product = False
 
-            with open("estoque.json", "r+", encoding="utf8") as f:
+            with open("estoque.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
                 for stock in data["estoque"]:
                     if stock["codigoProduto"] == product_id:
@@ -100,9 +103,13 @@ def run_system():
                     data_list: list = data["estoque"]
                     data_list.append(new_entry)
                     data["estoque"] = data_list
-                json.dump(data, f, indent= 4)
+                with open("estoque.json", "w", encoding="utf-8") as w:
+                        json.dump(data, w, ensure_ascii=False, indent= 4)
                 
-                if result_quantity is None:
+                try:
+                    if result_quantity is None:
+                        result_quantity = product_quantity
+                except UnboundLocalError:
                     result_quantity = product_quantity
                     
                 print(f"Quantidade de produtos existentes: {result_quantity}")
@@ -113,7 +120,7 @@ def run_system():
             product_quantity = safe_int_convert(input("Digite a quantidade que deseja remover: "))
             
             try:
-                with open("movimentacoes.json", "r+", encoding="utf8") as f:
+                with open("movimentações.json", "r", encoding="utf-8") as f:
                     data = json.load(f)
                     
                     transactions: list = data["movimentações"]
@@ -129,7 +136,8 @@ def run_system():
                     transactions.append(new_entry)
                     data["movimentações"] = transactions
                     
-                    json.dump(data, f, indent= 4)
+                    with open("movimentações.json", "w", encoding="utf-8") as w:
+                        json.dump(data, w, ensure_ascii=False, indent= 4)
                     
                     print(data)
             except FileNotFoundError:
@@ -147,12 +155,12 @@ def run_system():
 
                 print(transactions)
 
-                with open("movimentações.json", "w") as json_file:
-                    json.dump(transactions, json_file, indent= 4)
+                with open("movimentações.json", "w") as w:
+                    json.dump(transactions, w, ensure_ascii=False, indent= 4)
 
             is_existing_product = False
             
-            with open("estoque.json", "r+", encoding="utf8") as f:
+            with open("estoque.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
                 for stock in data["estoque"]:
                     if stock["codigoProduto"] == product_id:
@@ -162,7 +170,8 @@ def run_system():
                 if is_existing_product == False:
                     print("Produto não existe!")
                     
-                json.dump(data, f, indent= 4)
+                with open("estoque.json", "w", encoding="utf-8") as w:
+                        json.dump(data, w, ensure_ascii=False, indent= 4)
                 
                 print(f"Quantidade de produtos existentes: {result_quantity}")
             

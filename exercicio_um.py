@@ -14,7 +14,7 @@ def calculate_comission():
             elif float(sales["valor"]) >= 500:
                 sales["comissão"] = round(sales["valor"] * COMMISSION_RATE_5, 2)
         
-        with open("vendas.json", "w", encoding="utf8") as w:
+        with open("vendas.json", "w", encoding="utf-8") as w:
             json.dump(data, w, ensure_ascii=False, indent= 4)
             
         print(data)
