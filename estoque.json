@@ -1,64 +1,30 @@
 {
-    "estoque": [
-        {
-            "codigoProduto": 101,
-            "descricaoProduto": "Caneta Azul",
-            "estoque": 150
-        },
-        {
-            "codigoProduto": 102,
-            "descricaoProduto": "Caderno UniversitÃ¡rio",
-            "estoque": 75
-        },
-        {
-            "codigoProduto": 103,
-            "descricaoProduto": "Borracha Branca",
-            "estoque": 200
-        },
-        {
-            "codigoProduto": 104,
-            "descricaoProduto": "LÃ¡pis Preto HB",
-            "estoque": 320
-        },
-        {
-            "codigoProduto": 105,
-            "descricaoProduto": "Marcador de Texto Amarelo",
-            "estoque": 90
-        },
-        {
-            "codigoProduto": "3",
-            "descricaoProduto": "Caneta Rosa",
-            "estoque": 5
-        },
-        {
-            "codigoProduto": "7",
-            "descricaoProduto": "caneta vermelha",
-            "estoque": 8
-        },
-        {
-            "codigoProduto": "9",
-            "descricaoProduto": "caneta preta",
-            "estoque": 10
-        },
-        {
-            "codigoProduto": "3456",
-            "descricaoProduto": "Batatas",
-            "estoque": 50
-        },
-        {
-            "codigoProduto": "80",
-            "descricaoProduto": "Laranjas",
-            "estoque": 4
-        },
-        {
-            "codigoProduto": "75",
-            "descricaoProduto": "LimÃµes",
-            "estoque": 3
-        },
-        {
-            "codigoProduto": "875",
-            "descricaoProduto": "polenta",
-            "estoque": 45
-        }
-    ]
+	"estoque":
+	[
+	  {
+		"codigoProduto": 101,
+		"descricaoProduto": "Caneta Azul",
+		"estoque": 150
+	  },
+	  {
+		"codigoProduto": 102,
+		"descricaoProduto": "Caderno Universitário",
+		"estoque": 75
+	  },
+	  {
+		"codigoProduto": 103,
+		"descricaoProduto": "Borracha Branca",
+		"estoque": 200
+	  },
+	  {
+		"codigoProduto": 104,
+		"descricaoProduto": "Lápis Preto HB",
+		"estoque": 320
+	  },
+	  {
+		"codigoProduto": 105,
+		"descricaoProduto": "Marcador de Texto Amarelo",
+		"estoque": 90
+	  }
+	]
 }
